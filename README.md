@@ -5,7 +5,9 @@
 
 # Getting Started
 ### Install GoNet:
-`$ go get github.com/typio/gonet`
+```
+$ go get github.com/typio/gonet
+```
 
 # Documentation
 ## Matrix Library:
