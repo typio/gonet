@@ -49,8 +49,8 @@ $ go get github.com/typio/gonet
     `m.MultiplyM(n)`
 
 #### Linear Algebra Methods
-* Creates new matrix p which is the product of matrix m and matrix n (*dimensions of m and n must have [rows, cols] = [cols, rows]*)  
+* Returns new matrix p which is the product of matrix m and matrix n (*dimensions of m and n must have [rows, cols] = [cols, rows]*)  
     `p := m.MatrixP(n)`
 
-* Transposes matrix (*swaps rows and cols*)  
-    `m.Tranpose()`
+* Returns new transposed matrix (*swaps rows and cols*)  
+    `mT := m.Tranpose()`
