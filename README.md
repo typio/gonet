@@ -51,5 +51,5 @@ $ go get github.com/typio/gonet
 * Creates new matrix p which is the product of matrix m and matrix n (dimensions of m and n must have [rows, cols] = [cols, rows])  
     `p := m.ProductM(n)`
 
-* Transposes matrix (swaps rows and cols)
+* Transposes matrix (swaps rows and cols)  
     `m.Tranpose()`
