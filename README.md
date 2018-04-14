@@ -1,4 +1,4 @@
-# A **Go**lang Neural **Net**work Framework 
+# A __Go__lang Neural __Net__work Framework 
 
 ## A Simple Machine Learning Framework and Matrix Library
 ### For the purpose of explaining a neural network from scratch
