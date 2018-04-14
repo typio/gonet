@@ -48,6 +48,7 @@ $ go get github.com/typio/gonet
 * Adds corresponding element in matrix n to matrix m (*must both be same dimensions*):  
     `m.MultiplyM(n)`
 
+#### Linear Algebra Methods
 * Creates new matrix p which is the product of matrix m and matrix n (*dimensions of m and n must have [rows, cols] = [cols, rows]*)  
     `p := m.MatrixP(n)`
 
