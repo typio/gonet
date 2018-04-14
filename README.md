@@ -17,8 +17,39 @@ $ go get github.com/typio/gonet
     `import "github.com/typio/gonet"`
 
 ### Matrix Library:
+
+#### Basic Methods
 * Creates a 2 by 3 matrix of zeros:  
-    `matrix := gonet.Create(2, 3)`
+    `m := gonet.Create(2, 3)`
 
 * Returns the matrix:  
-    `matrix.Read()`
+    `m.Read()`
+
+* Prints the matrix and its dimensions:  
+    `m.PrintM()`
+
+* Returns int array of matrix's dimensions ([2, 3]):  
+    `m.GetSize()`
+
+* Fills matrix with random floats between range [0, 1):  
+    `m.Randomize()`
+
+#### Scalar Methods
+* Adds n (float64) to every element in matrix:  
+    `m.Add(n)`
+
+* Multiplies n (float64) to every element in matrix:  
+    `m.Multiply(n)`
+
+#### Elementwise Methods
+* Adds corresponding element in matrix n to matrix m (must both be same dimensions):  
+    `m.AddM(n)`
+
+* Adds corresponding element in matrix n to matrix m (must both be same dimensions):  
+    `m.MultiplyM(n)`
+
+* Creates new matrix p which is the product of matrix m and matrix n (dimensions of m and n must have [rows, cols] = [cols, rows])  
+    `p := m.ProductM(n)`
+
+* Transposes matrix (swaps rows and cols)
+    `m.Tranpose()`
