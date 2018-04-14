@@ -44,7 +44,6 @@ func (m Matrix) PrintM() {
 		}
 		fmt.Print("\n")
 	}
-	fmt.Print("\n")
 }
 
 // GetSize returns array of number of rows and number of cols
@@ -116,7 +115,7 @@ func (m *Matrix) MultiplyM(n *Matrix) {
 // MatrixP returns a new matrix that is the matrix product
 func (m *Matrix) MatrixP(n *Matrix) *Matrix {
 	if m.rows != n.cols || m.cols != n.rows {
-		panic("Matricies are not of the same dimensions, must be [rows, cols] = [cols, rows]")
+		panic("Matricies are not of correct dimensions, must be [rows, cols] = [cols, rows]")
 	} else {
 		result := Create(m.rows, n.cols)
 		for i := 0; i < result.rows; i++ {
