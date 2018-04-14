@@ -1,10 +1,7 @@
-## A **Go**lang Neural **Net**work Framework 
+# GoNet 
 
-## A Simple Machine Learning Framework and Matrix Library
+## A Simple (*incomplete*) Machine Learning Framework and Matrix Library
 ### For the purpose of explaining a neural network from scratch
-
-#### *not complete*
-
 
 # Getting Started
 ### Install GoNet:
