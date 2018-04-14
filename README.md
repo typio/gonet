@@ -1,7 +1,7 @@
 # GoNet 
 
 ## A Simple (*incomplete*) Machine Learning Framework and Matrix Library
-### For the purpose of explaining a neural network from scratch
+For the purpose of explaining a neural network from scratch
 
 # Getting Started
 ### Install GoNet:
