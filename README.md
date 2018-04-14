@@ -1,6 +1,6 @@
-# GoNet 
+# GoNet (*incomplete*)
 
-### A Simple (*incomplete*) Machine Learning Framework and Matrix Library
+### A Simple Machine Learning Framework and Matrix Library
 For the purpose of explaining a neural network from scratch
 
 *a lot of this is based on [this](https://github.com/CodingTrain/Toy-Neural-Network-JS/tree/master/lib)*
