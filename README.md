@@ -10,6 +10,10 @@ $ go get github.com/typio/gonet
 ```
 
 # Documentation
+### Basics:
+* Import the package:  
+    `import "github.com/typio/gonet"`
+
 ### Matrix Library:
 * Creates a 2 by 3 matrix of zeros:  
     `matrix := gonet.Create(2, 3)`
