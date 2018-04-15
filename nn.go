@@ -44,10 +44,10 @@ func (nn *NeuralNetwork) FeedForward(inputs *Matrix) *Matrix {
 	return output
 }
 
-func (nn *NeuralNetwork) train(inputs *Matrix, targets *Matrix) {
-	outputs := nn.FeedForward(inputs)
+// func (nn *NeuralNetwork) train(inputs *Matrix, targets *Matrix) {
+// 	outputs := nn.FeedForward(inputs)
 
-	// Calculate error
-	// ERROR = TARGETS - OUTPUTS
-	error := targets.SubtractM(outputs)
-}
+// 	// Calculate error
+// 	// ERROR = TARGETS - OUTPUTS
+// 	error := targets.SubtractM(outputs)
+// }
