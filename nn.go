@@ -44,7 +44,8 @@ func (nn *NeuralNetwork) FeedForward(inputs *Matrix) *Matrix {
 	return output
 }
 
-// func (nn *NeuralNetwork) train(inputs *Matrix, targets *Matrix) {
+// // Train uses backprop to modify weights
+// func (nn *NeuralNetwork) Train(inputs *Matrix, targets *Matrix) {
 // 	outputs := nn.FeedForward(inputs)
 
 // 	// Calculate error
