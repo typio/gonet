@@ -24,7 +24,18 @@ func Create(rows, cols int) *Matrix {
 			matrix[i][j] = 0
 		}
 	}
-	return &Matrix{rows: rows, cols: cols, data: matrix}
+	return &Matrix{rows, cols, matrix}
+}
+
+// FromArray creates a matrix from a 2D array
+func FromArray(arr [][]float64, r, c int) *Matrix {
+	matrix := make([][]float64, r)
+	for i := 0; i < r; i++ {
+		for j := 0; j < c; j++ {
+			matrix[i][j] = arr[i][j]
+		}
+	}
+	return &Matrix{r, c, matrix}
 }
 
 // Read returns the 2D slice in the Matrix struct
@@ -55,7 +66,7 @@ func (m Matrix) GetSize() [2]int {
 func (m *Matrix) Randomize() {
 	for i := 0; i < m.rows; i++ {
 		for j := 0; j < m.cols; j++ {
-			m.data[i][j] += rand.Float64()
+			m.data[i][j] += rand.Float64()*2 - 1
 		}
 	}
 }
@@ -86,28 +97,56 @@ func (m *Matrix) Multiply(n float64) {
 // Elementwise Methods //
 /////////////////////////
 
-// AddM sums every element with corresponding element of anouther matrix
-func (m *Matrix) AddM(n *Matrix) {
+// AddM returns matrix of every element plus the corresponding element of anouther matrix
+func (m *Matrix) AddM(n *Matrix) *Matrix {
+	result := Create(m.rows, m.cols)
 	if m.rows != n.rows || m.cols != n.cols {
 		panic("Matricies are not of the same dimensions")
 	} else {
 		for i := 0; i < m.rows; i++ {
 			for j := 0; j < m.cols; j++ {
-				m.data[i][j] += n.data[i][j]
+				result.data[i][j] = m.data[i][j] + n.data[i][j]
 			}
 		}
 	}
+	return result
 }
 
-// MultiplyM multiplies every element with corresponding element of anouther matrix
-func (m *Matrix) MultiplyM(n *Matrix) {
+// SubtractM returns matrix of every element minus the corresponding element of anouther matrix
+func (m *Matrix) SubtractM(n *Matrix) *Matrix {
+	result := Create(m.rows, m.cols)
 	if m.rows != n.rows || m.cols != n.cols {
 		panic("Matricies are not of the same dimensions")
 	} else {
 		for i := 0; i < m.rows; i++ {
 			for j := 0; j < m.cols; j++ {
-				m.data[i][j] *= n.data[i][j]
+				result.data[i][j] = m.data[i][j] - n.data[i][j]
 			}
+		}
+	}
+	return result
+}
+
+// MultiplyM returns matrix of every element times the corresponding element of anouther matrix
+func (m *Matrix) MultiplyM(n *Matrix) *Matrix {
+	result := Create(m.rows, m.cols)
+	if m.rows != n.rows || m.cols != n.cols {
+		panic("Matricies are not of the same dimensions")
+	} else {
+		for i := 0; i < m.rows; i++ {
+			for j := 0; j < m.cols; j++ {
+				result.data[i][j] = m.data[i][j] + n.data[i][j]
+			}
+		}
+	}
+	return result
+}
+
+// MapM applies a function to every element in matrix
+func (m *Matrix) MapM(fn func(n float64) float64) {
+	for i := 0; i < m.rows; i++ {
+		for j := 0; j < m.cols; j++ {
+			m.data[i][j] = fn(m.data[i][j])
 		}
 	}
 }
