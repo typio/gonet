@@ -29,12 +29,7 @@ func Create(rows, cols int) *Matrix {
 
 // FromArray creates a matrix from a 2D array
 func FromArray(arr [][]float64, r, c int) *Matrix {
-	matrix := make([][]float64, r)
-	for i := 0; i < r; i++ {
-		for j := 0; j < c; j++ {
-			matrix[i][j] = arr[i][j]
-		}
-	}
+	matrix := arr
 	return &Matrix{r, c, matrix}
 }
 
@@ -45,7 +40,7 @@ func (m Matrix) Read() [][]float64 {
 
 // PrintM prints the matrix
 func (m Matrix) PrintM() {
-	fmt.Printf("\nRows: %d, Cols: %d\n", m.rows, m.cols)
+	fmt.Printf("Rows: %d, Cols: %d\n", m.rows, m.cols)
 	for i := 0; i < m.rows; i++ {
 		for j := 0; j < m.cols; j++ {
 			fmt.Print(m.data[i][j])
@@ -149,6 +144,17 @@ func (m *Matrix) MapM(fn func(n float64) float64) {
 			m.data[i][j] = fn(m.data[i][j])
 		}
 	}
+}
+
+// MapNM returns new matrix with function applied to every element in matrix
+func (m *Matrix) MapNM(fn func(n float64) float64) *Matrix {
+	result := Create(m.rows, m.cols)
+	for i := 0; i < m.rows; i++ {
+		for j := 0; j < m.cols; j++ {
+			result.data[i][j] = fn(m.data[i][j])
+		}
+	}
+	return result
 }
 
 // MatrixP returns a new matrix that is the matrix product
