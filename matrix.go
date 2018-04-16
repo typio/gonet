@@ -17,20 +17,23 @@ type Matrix struct {
 
 // Create matrix and fill with 0's
 func Create(rows, cols int) *Matrix {
-	matrix := make([][]float64, rows)
+	arr := make([][]float64, rows)
 	for i := 0; i < rows; i++ {
-		matrix[i] = make([]float64, cols)
+		arr[i] = make([]float64, cols)
 		for j := 0; j < cols; j++ {
-			matrix[i][j] = 0
+			arr[i][j] = 0
 		}
 	}
-	return &Matrix{rows, cols, matrix}
+	return &Matrix{rows, cols, arr}
 }
 
-// FromArray creates a matrix from a 2D array
-func FromArray(arr [][]float64, r, c int) *Matrix {
-	matrix := arr
-	return &Matrix{r, c, matrix}
+// FromArray creates a matrix from an array
+func FromArray(arr []float64) *Matrix {
+	matrix := Create(len(arr), 1)
+	for i := 0; i < len(arr); i++ {
+		matrix.data[i][0] = arr[i]
+	}
+	return matrix
 }
 
 // Read returns the 2D slice in the Matrix struct
