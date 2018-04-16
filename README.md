@@ -11,7 +11,7 @@ For the purpose of explaining a neural network from scratch
 $ go get github.com/typio/gonet
 ```
 
-# Documentation
+# Documentation (*very incomplete*)
 ### Basics:
 * Import the package:  
     `import "github.com/typio/gonet"`
@@ -31,7 +31,7 @@ $ go get github.com/typio/gonet
 * Returns int array of matrix's dimensions (*[rows, cols]*):  
     `m.GetSize()`
 
-* Fills matrix with random floats in range [0, 1):  
+* Fills matrix with random floats in range [-1, 1):  
     `m.Randomize()`
 
 #### Scalar Methods
