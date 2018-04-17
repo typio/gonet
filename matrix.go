@@ -133,7 +133,7 @@ func (m *Matrix) MultiplyM(n *Matrix) *Matrix {
 	} else {
 		for i := 0; i < m.rows; i++ {
 			for j := 0; j < m.cols; j++ {
-				result.data[i][j] = m.data[i][j] + n.data[i][j]
+				result.data[i][j] = m.data[i][j] * n.data[i][j]
 			}
 		}
 	}
@@ -172,9 +172,9 @@ func (m *Matrix) MatrixP(n *Matrix) *Matrix {
 		result := Create(m.rows, n.cols)
 		for i := 0; i < result.rows; i++ {
 			for j := 0; j < result.cols; j++ {
-				var sum float64
+				sum := 0.0
 				for k := 0; k < m.cols; k++ {
-					sum += m.data[i][k] * n.data[k][j]
+					sum += (m.data[i][k] * n.data[k][j])
 				}
 				result.data[i][j] = sum
 			}
