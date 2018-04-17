@@ -160,6 +160,10 @@ func (m *Matrix) MapNM(fn func(n float64) float64) *Matrix {
 	return result
 }
 
+////////////////////////////
+// Linear Algebra Methods //
+////////////////////////////
+
 // MatrixP returns a new matrix that is the matrix product
 func (m *Matrix) MatrixP(n *Matrix) *Matrix {
 	if m.cols != n.rows {
