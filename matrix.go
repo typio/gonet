@@ -162,8 +162,8 @@ func (m *Matrix) MapNM(fn func(n float64) float64) *Matrix {
 
 // MatrixP returns a new matrix that is the matrix product
 func (m *Matrix) MatrixP(n *Matrix) *Matrix {
-	if m.rows != n.cols || m.cols != n.rows {
-		panic("Matricies are not of correct dimensions, must be [rows, cols] = [cols, rows]")
+	if m.cols != n.rows {
+		panic("Matricies are not of correct dimensions for matrix multiplication")
 	} else {
 		result := Create(m.rows, n.cols)
 		for i := 0; i < result.rows; i++ {

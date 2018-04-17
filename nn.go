@@ -22,7 +22,7 @@ func NewNN(inputNodes, hiddenNodes, outputNodes int) *NeuralNetwork {
 	biasH.Randomize()
 	biasO.Randomize()
 
-	learningRate := 0.1
+	learningRate := .1
 
 	return &NeuralNetwork{inputNodes, hiddenNodes, outputNodes,
 		weightsIH, weightsHO,
@@ -41,43 +41,42 @@ func DSigmoid(y float64) float64 {
 	return y * (1 - y)
 }
 
-// FeedForward does the processess of the network
-func (nn *NeuralNetwork) FeedForward(inputs *Matrix) *Matrix {
+// Predict gets output for input
+func (nn *NeuralNetwork) Predict(inputs *Matrix) float64 {
 	// Generates hidden outputs
 	hidden := nn.weightsIH.MatrixP(inputs)
 	hidden.AddM(nn.biasH)
 	hidden.MapM(Sigmoid)
 
-	output := nn.weightsHO.MatrixP(hidden)
-	output.AddM(nn.biasO)
-	output.MapM(Sigmoid)
+	outputs := nn.weightsHO.MatrixP(hidden)
+	outputs.AddM(nn.biasO)
+	outputs.MapM(Sigmoid)
 
-	return output
+	return outputs.data[0][0]
 }
 
 // Train uses backprop to modify weights
 func (nn *NeuralNetwork) Train(inputs *Matrix, targets *Matrix) {
-	//output := nn.FeedForward(inputs)
 	hidden := nn.weightsIH.MatrixP(inputs)
 	hidden.AddM(nn.biasH)
 	hidden.MapM(Sigmoid)
 
-	output := nn.weightsHO.MatrixP(hidden)
-	output.AddM(nn.biasO)
-	output.MapM(Sigmoid)
+	outputs := nn.weightsHO.MatrixP(hidden)
+	outputs.AddM(nn.biasO)
+	outputs.MapM(Sigmoid)
 
 	// Calculate error
 	// ERROR = TARGETS - OUTPUTS
-	outputErrors := targets.SubtractM(output)
+	outputErrors := targets.SubtractM(outputs)
 
 	// Calculate gradient
-	gradients := output.MapNM(DSigmoid)
+	gradients := outputs.MapNM(DSigmoid)
 	gradients.MultiplyM(outputErrors)
 	gradients.Multiply(nn.learningRate)
 
 	// Calculate deltas
 	hiddenT := hidden.Transpose()
-	weightsHOD := gradients.MultiplyM(hiddenT)
+	weightsHOD := gradients.MatrixP(hiddenT)
 
 	// Adjust weights by deltas
 	nn.weightsHO.AddM(weightsHOD)
@@ -86,7 +85,7 @@ func (nn *NeuralNetwork) Train(inputs *Matrix, targets *Matrix) {
 
 	// Calculate hidden layer errors
 	weightsHOT := nn.weightsHO.Transpose()
-	hiddenErrors := weightsHOT.MultiplyM(outputErrors)
+	hiddenErrors := weightsHOT.MatrixP(outputErrors)
 
 	// Calculate hidden gradient
 	hiddenGradient := hidden.MapNM(DSigmoid)
@@ -95,11 +94,9 @@ func (nn *NeuralNetwork) Train(inputs *Matrix, targets *Matrix) {
 
 	// Calculate input -> deltas
 	inputsT := inputs.Transpose()
-	weightsIHD := hiddenGradient.MultiplyM(inputsT)
+	weightsIHD := hiddenGradient.MatrixP(inputsT)
 
 	nn.weightsIH.AddM(weightsIHD)
 	// Adjusts the bias by gradients
 	nn.biasH.AddM(hiddenGradient)
-
-	output.PrintM()
 }
